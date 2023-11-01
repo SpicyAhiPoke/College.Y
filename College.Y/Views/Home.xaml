@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College.Y.Views.Home"
+             Title="Home">
+    <ContentPage.Content>
+        <ScrollView Margin="20,20,20,20">
+            <StackLayout Spacing="10">
+                <Label Text="Hello, Student!"
+                       FontSize="Title"
+                       />
+
+                <Label Text="Term"
+                       FontSize="Title"/>
+                
+                <Label Text="Courses"
+                       FontSize="Title"/>
+                <Button Text="Button 2"
+                        HeightRequest="50"/>
+
+                <Label Text="Assessment"
+                       FontSize="Title"
+                       />
+                <Button Text="Notif"
+                        HeightRequest="50"
+                        Clicked="Button_Clicked"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

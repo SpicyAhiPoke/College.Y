@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College.Y.Views.TermsInfo"
+             Title="Add">
+    
+    <ContentPage.Content>
+        <ScrollView Margin="0,0,0,20">
+            <StackLayout Margin="20,20,20,20"
+                     x:Name="slTermsInfo">
+                <!-- Entry -->
+                <Label Text="Term Title"/>
+                <Entry Placeholder="Term"
+                    Text="{Binding TermTitle}"
+                    HeightRequest="50"/>
+
+                <Label Text="Start"/>
+                <DatePicker x:Name="dpStart"
+                        Date="{Binding TermStart}"
+                        Format="d"/>
+
+                <Label Text="End"/>
+                <DatePicker x:Name="dpEnd"
+                        Date="{Binding TermEnd}"
+                        Format="d"
+                        MinimumDate="{Binding Source={x:Reference dpStart}, Path=Date}"/>
+
+                <Label Text="Course(s)"
+                   x:Name="lbCourse"/>
+                <Picker x:Name="pkCourse"
+                    Title="Select to Add"
+                    SelectedIndexChanged="pkCourse_SelectedIndexChanged">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="CourseName"/>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <!-- List -->
+                <CollectionView x:Name="cvTermCourse"
+                            HeightRequest="340"
+                            SelectionMode="Single"
+                            SelectionChanged="cvTermCourse_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <!-- Appearance -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <FlexLayout>
+                                <Label Text="{Binding CourseName}"
+                                   FontSize="Title"
+                                   WidthRequest="150"/>
+                                <Label Text="{Binding CourseStart, StringFormat='Start {0:d}'}"
+                                   TextColor="Silver"
+                                   FontSize="Medium"
+                                   WidthRequest="100"
+                                   HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding CourseEnd, StringFormat='End {0:d}'}"
+                                   TextColor="Silver"
+                                   FontSize="Medium"
+                                   WidthRequest="100"
+                                   HorizontalTextAlignment="End"/>
+                            </FlexLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Buttons -->
+                <Button Text="Save"
+                    Clicked="btnSave_Clicked"/>
+
+                <Button Text="Delete"
+                    Clicked="btnDelete_Clicked"/>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

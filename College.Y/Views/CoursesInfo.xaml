@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College.Y.Views.CoursesInfo"
+             Title="Add">
+    
+    <ContentPage.Content>
+        <ScrollView Margin="0,0,0,20">
+            <StackLayout Margin="20,20,20,20"
+                         x:Name="slCoursesInfo">
+                <!-- Entry -->
+                <Label Text="Course Name"/>
+                <Entry Placeholder="Course"
+                   Text="{Binding CourseName}"/>
+
+                <FlexLayout>
+                    <Label Text="Start"
+                       WidthRequest="300"/>
+                    <Switch x:Name="swStart"
+                        IsToggled="{Binding NotificationStart}"
+                        Toggled="swStart_Toggled"/>
+                </FlexLayout>
+                <DatePicker x:Name="dpStart"
+                        Date="{Binding CourseStart}"
+                        Format="d"/>
+
+                <FlexLayout>
+                    <Label Text="End"
+                       WidthRequest="300"/>
+                    <Switch x:Name="swEnd"
+                        IsToggled="{Binding NotificationEnd}"
+                        Toggled="swEnd_Toggled"/>
+                </FlexLayout>
+                <DatePicker x:Name="dpEnd"
+                        Date="{Binding CourseEnd}"
+                        Format="d"
+                        MinimumDate="{Binding Source={x:Reference dpStart}, Path=Date}"/>
+
+                <Label Text="Status"/>
+                <Picker Title="Select"
+                    SelectedItem="{Binding CourseStatus}">
+                    <Picker.Items>
+                        <x:String>Plan to Take</x:String>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Instructor Name"/>
+                <Entry Placeholder="Instructor"
+                    Text="{Binding InstructorName}"/>
+
+                <Label Text="Phone"/>
+                <Entry x:Name="etyPhone"
+                       Placeholder="000-000-0000"
+                       Keyboard="Numeric"
+                       MaxLength="10"
+                    Text="{Binding InstructorPhone}"/>
+
+                <Label Text="Email"/>
+                <Entry x:Name="etyEmail"
+                    Placeholder="username@xyz.edu"
+                    Text="{Binding InstructorEmail}"/>
+
+                <Label Text="Note(s)"/>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Share"
+                                       x:Name="siShare"
+                                   BackgroundColor="Green"
+                                   Invoked="siShare_Invoked"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Editor x:Name="edNote"
+                    HeightRequest="320"
+                    Placeholder="Swipe to Share"
+                    BackgroundColor="FloralWhite"
+                    Text="{Binding CourseNote}"/>
+                </SwipeView>
+
+                <Label Text="Assessments"
+                       x:Name="lbAssessment"/>
+                <Picker x:Name="pkAssessment"
+                    Title="Select to Add"
+                    SelectedIndexChanged="pkAssessment_SelectedIndexChanged">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="AssessmentName"/>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <!-- List -->
+                <CollectionView x:Name="cvCourseAssessment"
+                            HeightRequest="340"
+                            SelectionMode="Single"
+                            SelectionChanged="cvCourseAssessment_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <!-- Appearance -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Remove"
+                                               BackgroundColor="PaleVioletRed"
+                                               Invoked="siRemove_Invoked"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <!-- Content -->
+                                <FlexLayout>
+                                    <Label Text="{Binding AssessmentName}"
+                                   FontSize="Title"
+                                   WidthRequest="150"/>
+                                    <Label Text="{Binding AssessmentStart, StringFormat='Start {0:d}'}"
+                                   TextColor="Silver"
+                                   FontSize="Medium"
+                                   WidthRequest="100"
+                                   HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding AssessmentEnd, StringFormat='End {0:d}'}"
+                                   TextColor="Silver"
+                                   FontSize="Medium"
+                                   WidthRequest="100"
+                                   HorizontalTextAlignment="End"/>
+                                </FlexLayout>
+
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Buttons -->
+                <Button Text="Save"
+                    Clicked="btnSave_Clicked"/>
+
+                <Button Text="Delete"
+                    Clicked="btnDelete_Clicked"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+ 
+</ContentPage>

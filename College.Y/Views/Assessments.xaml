@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College.Y.Views.Assessments"
+             Title="Assessment">
+    <!-- Toolbar -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+                     Clicked="tbiAdd_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <!-- List -->
+    <CollectionView x:Name="cvAssessment"
+                    Margin="20,20,20,20"
+                    SelectionMode="Single"
+                    SelectionChanged="cvAssessment_SelectionChanged">
+        
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="20"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <FlexLayout>
+                    <Label Text="{Binding AssessmentName}"
+                           FontSize="Title"
+                           WidthRequest="150"
+                           HeightRequest="50"/>
+                    <Label Text="{Binding AssessmentStart, StringFormat='Start {0:d}'}"
+                           FontSize="Medium"
+                           TextColor="ForestGreen"
+                           WidthRequest="100"
+                           HorizontalTextAlignment="End"/>
+                    <Label Text="{Binding AssessmentEnd, StringFormat='End {0:d}'}"
+                           FontSize="Medium"
+                           TextColor="PaleVioletRed"
+                           WidthRequest="100"
+                           HorizontalTextAlignment="End"/>
+                </FlexLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</ContentPage>

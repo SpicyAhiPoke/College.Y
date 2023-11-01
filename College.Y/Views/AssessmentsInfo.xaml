@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College.Y.Views.AssessmentsInfo"
+             Title="Add">
+    
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,20"
+                     x:Name="slAssessmentsInfo">
+            <!-- Entry -->
+            <Label Text="Assessment Name"/>
+            <Entry Placeholder="Assessment"
+                   Text="{Binding AssessmentName}"/>
+            
+            <Label Text="Type"/>
+            <Picker Title="Select"
+                    SelectedItem="{Binding AssessmentType}">
+                <Picker.Items>
+                    <x:String>Objective</x:String>
+                    <x:String>Performance</x:String>
+                </Picker.Items>
+            </Picker>
+            
+            <FlexLayout>
+                <Label Text="Start"
+                       WidthRequest="300"/>
+                <Switch x:Name="swStart"
+                        IsToggled="{Binding NotificationStart}"
+                        Toggled="swStart_Toggled"/>
+            </FlexLayout>
+            <DatePicker x:Name="dpStart"
+                        Date="{Binding AssessmentStart}"
+                        Format="d"/>
+
+            <FlexLayout>
+                <Label Text="End"
+                       WidthRequest="300"/>
+                <Switch x:Name="swEnd"
+                        IsToggled="{Binding NotificationEnd}"
+                        Toggled="swEnd_Toggled"/>
+            </FlexLayout>
+            <DatePicker x:Name="dpEnd"
+                        Date="{Binding AssessmentEnd}"
+                        Format="d"
+                        MinimumDate="{Binding Source={x:Reference dpStart}, Path=Date}"/>
+
+            <!-- Buttons -->
+            <Button Text="Save"
+                    Clicked="btnSave_Clicked"/>
+
+            <Button Text="Delete"
+                    Clicked="btnDelete_Clicked_1"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
